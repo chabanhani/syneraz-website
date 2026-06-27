@@ -209,6 +209,7 @@ footer .copy{border-top:1px solid #102536;padding-top:22px;font-size:13px;color:
   .principle,.step{border-inline-end:none;border-bottom:1px solid var(--line);padding-inline-start:0!important;padding:28px 0}
   .step:last-child{border-bottom:none}
   nav ul{display:none}.menu-btn{display:inline-flex;align-items:center;justify-content:center}
+  .nav-right .btn{display:none}
 }
 
 /* ── Arabic / RTL refinements — same stylesheet, no fork (layout already uses logical properties) ── */
