@@ -1,0 +1,31 @@
+# ── Syneraz corporate site — Caddy block (mirror of the securityrelief.com pattern) ──
+# Static serving, auto-TLS, www → apex redirect, security headers.
+# Adjust the root path to wherever the repo is pulled on the droplet.
+#
+# Language routing: English (default, canonical) at /, Arabic at /ar/.
+# try_files below serves /index.html for / and /ar/index.html for /ar/ automatically.
+
+syneraz.com {
+    root * /var/www/syneraz-site
+    encode zstd gzip
+    file_server
+    try_files {path} {path}/ {path}/index.html
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "geolocation=(), microphone=(), camera=()"
+        # CSP: self + Google Fonts. Tighten the connect-src once the contact endpoint is wired.
+        Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'"
+        -Server
+    }
+
+    @assets path /assets/*
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+}
+
+www.syneraz.com {
+    redir https://syneraz.com{uri} permanent
+}

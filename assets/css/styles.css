@@ -1,0 +1,232 @@
+:root{
+  --navy:#003366; --bg:#001022; --bg2:#001627; --panel:#04223E; --navy-2:#00264D;
+  --teal:#33CCCC; --teal-soft:#7FE3E3; --teal-deep:#16a3a3;
+  --txt:#EAF2F7; --muted:#9FB6CC; --line:rgba(255,255,255,.09);
+  --sr-royal:#20409A; --sr-sky:#4694C8;
+  --maxw:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;color:var(--txt);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:"Quicksand",sans-serif}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;border-radius:999px;padding:15px 30px;cursor:pointer;border:1.5px solid transparent;transition:transform .25s,box-shadow .25s,border-color .25s}
+.btn:active{transform:translateY(1px)}
+.btn.teal{background:var(--teal);color:#00222b}
+.btn.teal:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px rgba(51,204,204,.65)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.22)}
+.btn.ghost:hover{border-color:var(--teal)}
+.btn.srfill{background:var(--sr-royal);color:#fff}.btn.srfill:hover{transform:translateY(-2px);box-shadow:0 16px 34px -16px rgba(32,64,154,.7)}
+.btn.srline{background:#fff;color:var(--sr-royal);border-color:#d3e0f4}.btn.srline:hover{border-color:var(--sr-sky)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.09s}.reveal.d2{transition-delay:.18s}.reveal.d3{transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{animation:none!important}html{scroll-behavior:auto}}
+
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-family:"Quicksand";font-weight:700;letter-spacing:3px;font-size:12px;text-transform:uppercase;color:var(--teal-soft);margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:20px;flex:none;background:url("../img/hero-monogram.png") no-repeat center/contain}
+h2{font-weight:700;font-size:clamp(34px,5vw,60px);line-height:1.08;letter-spacing:-1.5px;color:#fff}
+.lead{font-size:18px;color:var(--muted);max-width:560px}
+.brushword{color:var(--teal)}
+
+/* HEADER */
+header{position:fixed;inset-inline:0;top:0;z-index:80;transition:.3s;background:transparent}
+.nav{display:flex;align-items:center;justify-content:space-between;height:86px;transition:.3s}
+.logo img{height:40px;display:block}
+nav ul{display:flex;gap:34px;list-style:none}
+nav ul a{font-weight:500;color:rgba(255,255,255,.82);font-size:15px;position:relative}
+nav ul a::after{content:"";position:absolute;inset-inline:0;bottom:-7px;height:2px;background:var(--teal);border-radius:2px;opacity:0;transform:scaleX(.3);transition:.25s;transform-origin:center}
+nav ul a:hover{color:#fff}nav ul a:hover::after{opacity:.95;transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang{background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-family:"Quicksand";font-weight:700;font-size:13px;color:#fff;cursor:pointer}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:42px;height:42px;cursor:pointer}
+.menu-btn svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2}
+header.scrolled{background:rgba(0,17,31,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+header.scrolled .nav{height:70px}
+
+/* HERO — Lovable background (two soft glows on deep navy) + smaller static monogram */
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;overflow:hidden;padding-top:86px;
+  background:
+    radial-gradient(120% 90% at 78% 12%, rgba(0,85,108,.55) 0%, transparent 55%),
+    radial-gradient(90% 80% at 10% 90%, rgba(0,119,128,.32) 0%, transparent 60%),
+    var(--bg)}
+/* dotted grid overlay (Lovable uses dots, not lines) */
+.grid-ov{position:absolute;inset:0;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(circle at 25% 30%,#000,transparent 72%);-webkit-mask-image:radial-gradient(circle at 25% 30%,#000,transparent 72%)}
+/* monogram: smaller, static, positioned off the right edge */
+.hero-mono{position:absolute;top:50%;inset-inline-end:0;transform:translateY(-50%);width:50%;max-width:680px;z-index:1;
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.45));pointer-events:none}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero .sig{font-family:"Quicksand";font-weight:700;letter-spacing:4px;font-size:13px;color:var(--teal-soft);margin-bottom:20px}
+.hero h1{font-weight:700;font-size:clamp(44px,7vw,88px);line-height:1.02;letter-spacing:-2px;color:#fff;margin-bottom:26px;max-width:760px}
+.hero h1 .t{color:var(--teal)}
+.hero p{font-size:20px;color:#c4d4e6;max-width:480px;margin-bottom:34px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* WHAT — our model */
+.do{padding:120px 0}
+.do .head{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:end;margin-bottom:30px}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);margin-top:40px}
+.principle{padding:40px 32px 30px 0;border-inline-end:1px solid var(--line)}
+.principle:nth-child(2){padding-inline-start:32px}
+.principle:last-child{border-inline-end:none;padding-inline-start:32px}
+.principle .n{font-family:"Quicksand";font-weight:700;font-size:15px;color:var(--teal);letter-spacing:2px;margin-bottom:14px}
+.principle h3{font-weight:700;font-size:24px;color:#fff;margin-bottom:8px}
+.principle p{color:var(--muted);font-size:16px}
+
+/* PRODUCTS & SERVICES — 3-card grid */
+.ps{padding:120px 0;background:linear-gradient(180deg,var(--bg),var(--bg2))}
+.ps .head{text-align:center;margin-bottom:54px}
+.ps .head .eyebrow{justify-content:center}
+.ps .head .lead{margin:0 auto}
+.ps-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px;align-items:stretch}
+.pcard{border-radius:24px;padding:38px;display:flex;flex-direction:column;transition:transform .25s;position:relative;overflow:hidden}
+.pcard.feature{background:#fff;border:1px solid #dbe6f5}
+.pcard.feature::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(70,148,200,.16),transparent 60%);top:-90px;inset-inline-end:-60px}
+.pcard.soon{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.18)}
+.pcard:hover{transform:translateY(-6px)}
+.tagx{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-family:"Quicksand";font-weight:700;font-size:11px;letter-spacing:1px;padding:6px 13px;border-radius:999px;margin-bottom:18px;position:relative;z-index:1}
+.tag-live{background:#E6FAFA;color:var(--teal-deep)}
+.tag-live .livedot{width:7px;height:7px;border-radius:50%;background:var(--teal-deep)}
+.tag-soon{background:rgba(255,255,255,.08);color:var(--teal-soft)}
+.sr-lockup{height:52px;width:auto;max-width:100%;object-fit:contain;margin:2px 0 14px;display:block;position:relative;z-index:1}
+.pcard.feature h3{color:var(--sr-royal)}
+.pcard.feature p{color:#46536e}
+.pcard.soon h3{color:#fff}
+.pcard.soon p{color:var(--muted)}
+.pcard h3{font-weight:700;font-size:22px;margin-bottom:8px;position:relative;z-index:1}
+.pcard p{font-size:15px;margin-bottom:auto;position:relative;z-index:1}
+.pcard .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:1}
+.pcard .ic{width:46px;height:46px;border-radius:13px;background:rgba(51,204,204,.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.pcard .ic svg{width:24px;height:24px;stroke:var(--teal);fill:none;stroke-width:2}
+
+/* WHY SYNERAZ — three benefit cards (distinct from the line-divided bands) */
+.why{padding:110px 0;background:var(--bg2)}
+.why-head{margin-bottom:46px;max-width:680px}
+.why .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.stat{position:relative;overflow:hidden;padding:38px 34px 34px;border:1px solid var(--line);border-radius:22px;
+  background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.015));transition:transform .25s,border-color .25s}
+.stat:hover{transform:translateY(-6px);border-color:rgba(127,227,227,.3)}
+.stat::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(51,204,204,.12),transparent 62%);top:-60px;inset-inline-end:-40px;pointer-events:none}
+.stat .qn{font-family:"Quicksand";font-weight:700;font-size:15px;color:var(--teal);letter-spacing:1px;margin-bottom:20px;display:block}
+.stat .big{font-family:"Quicksand";font-weight:700;font-size:clamp(22px,2.4vw,27px);color:#fff;line-height:1.18;margin-bottom:12px}
+.stat p{color:var(--muted);font-size:15px;position:relative}
+
+/* HOW */
+.how{padding:120px 0;background:var(--bg2)}
+.how .top{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;margin-bottom:50px}
+/* statement card — teal-tinted glass with a clear accent edge */
+.how-glass{position:relative;border-radius:22px;padding:38px 38px 38px 42px;overflow:hidden;
+  background:linear-gradient(145deg,rgba(51,204,204,.16),rgba(2,42,77,.5));
+  border:1px solid rgba(127,227,227,.32);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 36px 70px -34px rgba(0,0,0,.7)}
+/* teal accent bar on the start edge */
+.how-glass::after{content:"";position:absolute;inset-inline-start:0;top:22px;bottom:22px;width:4px;border-radius:4px;background:var(--teal)}
+.how-glass::before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(51,204,204,.30),transparent 60%);top:-80px;inset-inline-end:-60px;pointer-events:none}
+.how-glass p{font-size:20px;line-height:1.6;color:#eaf4f9;position:relative;z-index:1;margin:0}
+.how-glass .g{color:var(--teal);font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.step{padding:34px 30px 14px 0;border-inline-end:1px solid var(--line)}
+.step:nth-child(2){padding-inline-start:30px}
+.step:last-child{border-inline-end:none;padding-inline-start:30px}
+.step .k{font-family:"Quicksand";font-weight:700;font-size:34px;color:var(--teal);line-height:1;margin-bottom:18px;display:block}
+.step h4{font-size:21px;color:#fff;margin-bottom:8px}
+.step p{color:var(--muted);font-size:15px}
+
+/* LATEST / NEWS */
+.latest{padding:120px 0;background:var(--bg)}
+.latest .head{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;margin-bottom:46px}
+.latest .head .lead{margin-top:8px}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.news{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:20px;padding:30px;background:rgba(255,255,255,.025);transition:transform .25s,border-color .25s}
+.news:hover{transform:translateY(-6px);border-color:rgba(127,227,227,.35)}
+.news .meta{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.news .pill{font-family:"Quicksand";font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--teal-deep);background:#E6FAFA;padding:5px 11px;border-radius:999px}
+.news .date{font-size:12px;color:var(--muted);letter-spacing:.5px}
+.news h4{font-size:19px;color:#fff;margin-bottom:10px;line-height:1.3}
+.news p{color:var(--muted);font-size:15px;margin-bottom:auto}
+.news .more{margin-top:20px;font-family:"Quicksand";font-weight:700;font-size:13px;color:var(--teal);display:inline-flex;align-items:center;gap:7px}
+.news .more svg{width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:2;transition:transform .2s}
+.news:hover .more svg{transform:translateX(4px)}
+.li-cta{position:relative;overflow:hidden;margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  border:1px solid rgba(127,227,227,.22);border-radius:20px;padding:30px 36px;
+  background:linear-gradient(135deg,rgba(51,204,204,.08),rgba(255,255,255,.02))}
+/* faint Syneraz monogram watermark filling the band */
+.li-cta::after{content:"";position:absolute;inset-inline-end:150px;top:50%;transform:translateY(-50%);
+  width:230px;height:200px;background:url("../img/hero-monogram.png") no-repeat center/contain;opacity:.07;pointer-events:none}
+.li-cta .left{display:flex;align-items:center;gap:18px;position:relative;z-index:1}
+.li-cta .li-ic{width:46px;height:46px;flex:none;border-radius:12px;background:var(--teal);display:flex;align-items:center;justify-content:center}
+.li-cta .li-ic svg{width:24px;height:24px;fill:#00263b}
+.li-cta .t{font-family:"Quicksand";font-weight:700;font-size:19px;color:#fff}
+.li-cta .t span{color:var(--teal-soft);font-weight:500;font-size:15px;display:block;margin-top:4px;font-family:"Inter"}
+.li-cta .btn{position:relative;z-index:1}
+
+/* CONTACT */
+.contact{padding:120px 0;background:radial-gradient(120% 100% at 50% 0%,#013a63,var(--bg2));position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(51,204,204,.18),transparent 62%);filter:blur(50px);bottom:-260px;inset-inline-end:-120px}
+.contact .inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.contact h2{margin-bottom:14px}
+.contact .ci{margin-top:22px}
+.contact .ci a,.contact .ci .rowi{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:16px;transition:.2s}
+.contact .ci a:hover{color:var(--teal)}
+.contact .ci .k{font-family:"Quicksand";font-size:12px;letter-spacing:1px;color:var(--teal-soft);text-transform:uppercase;flex:none}
+form{display:grid;gap:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:24px;padding:34px;backdrop-filter:blur(10px)}
+.field{display:grid;gap:6px}.field label{font-size:13px;color:var(--teal-soft);font-weight:600}
+input,textarea,select{font-family:"Inter";font-size:16px;padding:15px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.05);color:#fff;width:100%}
+input::placeholder,textarea::placeholder{color:#8fa6bd}
+select{color:#cfe0ee}select option{color:#012}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal)}
+textarea{min-height:110px;resize:vertical}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+footer{background:#00080f;color:#9fb6cc;padding:72px 0 34px}
+footer .ftop{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;margin-bottom:44px}
+footer .flogo{height:32px;display:block;margin-bottom:16px}
+footer .fbrand p{font-size:14px;max-width:360px;color:#7e93ab;line-height:1.7}
+footer .fsig{font-family:"Quicksand";letter-spacing:4px;color:#fff;font-size:13px;margin-top:18px}
+footer .fcol h5{font-family:"Quicksand";font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-soft);margin-bottom:16px}
+footer .fcol nav{display:flex;flex-direction:column;gap:11px}
+footer .fcol a{color:#cfe0ee;font-size:14px;transition:color .2s}
+footer .fcol a:hover{color:var(--teal)}
+footer .copy{border-top:1px solid #102536;padding-top:22px;font-size:13px;color:#5f7491}
+
+.mobile-nav{display:none;flex-direction:column;background:rgba(0,8,15,.98);padding:10px 40px 20px}
+.mobile-nav a{padding:13px 0;color:#fff;border-bottom:1px solid var(--line);font-weight:500}
+.mobile-nav.open{display:flex}
+.mocktag{position:fixed;bottom:14px;inset-inline-start:14px;background:var(--teal);color:#012;font-weight:700;font-size:11px;padding:7px 14px;border-radius:999px;z-index:99;font-family:"Quicksand"}
+@media(max-width:900px){
+  .wrap{padding:0 24px}
+  .hero-mono{opacity:.18;width:90%;inset-inline-end:-20%}
+  .hero h1{font-size:clamp(40px,9vw,60px)}
+  .do .head,.ps-grid,.principles,.why .grid,.how .top,.contact .inner,.steps,.news-grid,.latest .head,footer .ftop{grid-template-columns:1fr}
+  footer .ftop{gap:32px}
+  .principle,.step{border-inline-end:none;border-bottom:1px solid var(--line);padding-inline-start:0!important;padding:28px 0}
+  .step:last-child{border-bottom:none}
+  nav ul{display:none}.menu-btn{display:inline-flex;align-items:center;justify-content:center}
+}
+
+/* ── Arabic / RTL refinements — same stylesheet, no fork (layout already uses logical properties) ── */
+/* Tajawal for Arabic; Latin display can stay Quicksand for any Latin words. */
+html[lang="ar"] body{font-family:"Tajawal","Inter",sans-serif}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4,html[lang="ar"] h5{font-family:"Tajawal","Quicksand",sans-serif}
+html[lang="ar"] .eyebrow,html[lang="ar"] .principle .n,html[lang="ar"] .stat .qn,
+html[lang="ar"] .tagx,html[lang="ar"] .news .pill,html[lang="ar"] footer .fcol h5,
+html[lang="ar"] .field label,html[lang="ar"] .contact .ci .k{font-family:"Tajawal",sans-serif}
+/* Arabic script is cursive: letter-spacing breaks letter joining — neutralize it on every spaced run. */
+html[lang="ar"] .eyebrow,html[lang="ar"] .hero .sig,html[lang="ar"] .sig,
+html[lang="ar"] .principle .n,html[lang="ar"] .stat .qn,html[lang="ar"] .step .k,
+html[lang="ar"] .tagx,html[lang="ar"] .news .pill,html[lang="ar"] .news .date,
+html[lang="ar"] .fsig,html[lang="ar"] footer .fcol h5,
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] .contact .ci .k{letter-spacing:normal}
+/* Latin negative tracking on headings is for Latin glyphs only; reset for Arabic. */
+html[lang="ar"] h2,html[lang="ar"] .hero h1{letter-spacing:0}
+/* Arabic at Latin kicker/signature sizes reads too small; bump size + weight for legibility. */
+html[lang="ar"] .eyebrow{font-size:15px;font-weight:700}
+html[lang="ar"] .hero .sig{font-size:20px;font-weight:700}
+html[lang="ar"] .fsig{font-size:16px;font-weight:700}

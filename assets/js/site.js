@@ -1,0 +1,11 @@
+const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40),{passive:true});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+  const mb=document.getElementById('menuBtn'),mn=document.getElementById('mobileNav');
+  mb.addEventListener('click',()=>{const o=mn.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+  mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mn.classList.remove('open')));
+  const f=document.getElementById('contactForm');
+  f.addEventListener('submit',e=>{e.preventDefault();if(f.querySelector('[name=website]').value)return;
+    const msg=document.documentElement.lang==='ar'?'شكراً لك. تم استلام رسالتك.':'Thank you. Your message has been received.';
+    f.innerHTML='<p style="color:#7FE3E3;font-weight:600">'+msg+'</p>';});
